@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Daily Schedule</title>
+<link rel="stylesheet" href="schedule.css"/>
+</head>
+
+<body>
+<ul>
+  <li><a href="Calender.html">Calendar</a></li>
+  <li><a href="Schedule.html">Schedule</a></li>
+  <li><a href="Bio.html">Bio</a></li>
+  <li><a href="Event.html">Add Event</a></li>
+</ul>
+		<h1>
+       DAILY SCHEDULE
+        </h1>
+     <p >
+    Add your events under the navigation bar, refresh page once events are deleted.
+    </p>
+   
+    <h3 class="border">
+  	EVENTS
+   	</h3>
+    <div id="eventDiv">
+    	<!--My events will show up here-->
+	</div>
+</body>
+<script>
+var eventOrder=[]; //holds the event in order
+var eventList = document.getElementById("eventDiv");
+
+sortEvents();
+writeEvents();
+	
+/********************************************************
+* readEvent
+* Gets the event data for a single event from the 
+* local storage string and puts it into an array
+********************************************************/
+function readEvent(dateKey)
+{
+  	var data = localStorage.getItem(dateKey).split("&"); //gets saved event info from local storage
+    console.log(data);
+	
+    var obj={}; 
+	
+    for(var key in data)
+    {
+        console.log(data[key]);
+        obj[data[key].split("=")[0]] = data[key].split("=")[1]; //creates a new associative array where the event attribute is set equal to its value
+		//example eventTitle = My Party
+    }
+
+    console.log(obj);
+	formatEvent(dateKey, obj);
+}
+	
+/********************************************************
+* formatEvent
+* Assembles HTML string for the event and its attributes
+********************************************************/	
+function formatEvent(date, event)
+{
+	if(event["eventTitle"] != undefined)
+	{	
+		var eventStr=""; //event string that will hold the generated HTML
+		
+		var newEvent = document.createElement("div");//makes a new div that the element will go into
+		//Add remove event
+		eventStr += "<button id='" + date + "'class='btn btn-danger btn-xs' style='float:right' onClick='removeEvent(this)'>X</button>";
+		//Add event title
+		eventStr += "<h3>" + unescape(event["eventTitle"].split('+').join(' ')) + "</h3>";
+		//Add event times
+		eventStr += "<p>" + event["eventStartDate"] + " " + unescape(event["eventStartTime"])+ " to " + event["eventEndDate"] + " " + unescape(event["eventEndTime"])+"</p>";
+		//Add priority level
+		eventStr += "<p>Priority: " + event["eventPriority"] +"</p>";
+		//Add event description
+		eventStr += "<p>Description: " + unescape(event["eventDescription"].split('+').join(' '))  +"</p>";
+		//add our event string to the newEvent div
+		newEvent.innerHTML = eventStr;
+		//add the event to the eventList column
+		eventList.appendChild(newEvent);
+	}
+}
+	
+/********************************************************
+* sort Events
+* Sorts the events in order by date in an array
+********************************************************/
+function sortEvents()
+{
+	//gets the date keys for all of the events
+	for (var i=0; i<=localStorage.length-1; i++)  
+    {  
+        eventOrder[i] = localStorage.key(i);  
+    }  
+	//sorts the event dates in order
+	eventOrder.sort(function(a,b){
+	  // Turn your strings into dates, and then subtract them
+	  // to get a value that is either negative, positive, or zero.
+	  return new Date(b.date) - new Date(a.date);
+	});
+}
+
+/********************************************************
+* writeEvent
+* Writes the events after they have been sorted
+********************************************************/
+function writeEvents()
+{
+	//gets the date keys for all of the events
+	for (var i=0; i<=eventOrder.length-1; i++)  
+    {  	
+		readEvent(eventOrder[i]);
+    }  
+}
+	
+/********************************************************
+* removeEvent
+* Removes the events after user hits red button
+********************************************************/
+function removeEvent(element)
+{
+	var eventKey = element.id;
+	console.log("removing " + eventKey);
+	localStorage.removeItem(eventKey);
+	sortEvents();
+	writeEvents();
+	window.location.reload();
+}
+	
+</script>
+</html>

@@ -1,0 +1,20 @@
+div {
+	width: 500px;
+    margin: auto;
+    padding: 10px;
+    border: 5px solid gray;
+	background-color:#DAFDFF;
+	
+}
+body{
+	font-family:Verdana;
+	text-align: center;
+	background-image: url(Images/nature_background.jpg);
+
+}
+p{
+	color:black;
+	font-family:Verdana;
+	
+
+}

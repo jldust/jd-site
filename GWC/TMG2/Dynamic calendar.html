@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- This is a template for NCC's GWC Club-->
+
+<html lang="en">
+<!-- HEADER SECTION -->
+<head>
+  <meta charset="utf-8">
+
+  <title>Calendar</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <!-- Links to CSS and JS Files -->
+  <link rel="stylesheet" href="Dynamic calendar.css">
+<link href="https://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet">
+
+  <!--Calendar JavaScript file-->
+  <script type="text/javascript" src="Dynamic calendar.js">
+  /***********************************************
+* Basic Calendar-By Brian Gosselin at http://scriptasylum.com/bgaudiodr/
+* Script featured on Dynamic Drive (http://www.dynamicdrive.com)
+* This notice must stay intact for use
+* Visit http://www.dynamicdrive.com/ for full source code
+***********************************************/
+</script> 
+
+</head>
+
+<!-- BODY SECTION -->
+<body>
+<h1>Monthly Calendar</h1>
+
+<form>
+    <select onChange="updatecalendar(this.options)">
+		<script type="text/javascript">
+        
+        var themonths=['January','February','March','April','May','June',
+        'July','August','September','October','November','December']
+        
+        <!-- Get the current date-->
+        var todaydate=new Date()
+        var curmonth=todaydate.getMonth()+1 //get current month (1-12)
+        var curyear=todaydate.getFullYear() //get current year
+        
+        <!-- Change the calendar-->
+        function updatecalendar(theselection){
+        var themonth=parseInt(theselection[theselection.selectedIndex].value)+1
+        var calendarstr=buildCal(themonth, curyear, "main", "month", "daysofweek", "days", 0)
+        if (document.getElementById)
+        document.getElementById("calendarspace").innerHTML=calendarstr
+        }
+        
+        document.write('<option value="'+(curmonth-1)+'" selected="yes">Current Month</option>')
+        for (i=0; i<12; i++) //display option for 12 months of the year
+        document.write('<option value="'+i+'">'+themonths[i]+' '+curyear+'</option>')
+        </script>
+    </select>
+
+    <!--Display calendar on screen-->
+    <div id="calendarspace">
+    <script>
+		//write out current month's calendar to start
+		document.write(buildCal(curmonth, curyear, "main", "month", "daysofweek", "days", 0))
+		
+		$('#days').attr('href','Add events page.html');
+    </script>
+    </div>
+</form>
+<br>
+	<a href="index.html">
+		<img src="homepage.png" id="homepage">
+   </a>
+   
+</body>
+
+<!-- FOOTER SECTION -->
+<footer>
+
+</footer>
+</html>

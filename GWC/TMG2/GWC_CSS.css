@@ -1,0 +1,67 @@
+h1 {
+	color: white;
+}
+h2 {
+	color: white;
+}
+form {
+	color: white;
+}
+input {
+	color: black;
+}
+output {
+	color: white;
+}
+eventDiv div{
+		color: white;
+}
+
+eventDiv p{
+		color: white;
+}
+
+img {
+    position: absolute;
+    left: 10px;
+    width: 300px;
+	vertical-align: top;
+	
+}
+
+.calendar {
+    position: absolute;
+    left: 100px;
+    width: 300px;
+	vertical-align: top;
+}
+
+#motivM {
+    position: relative;
+    right: 100px;
+    width: 300px;
+	float: right;
+	vertical-align: top;
+
+}
+h1 {
+	text-align: center
+}
+h2 {
+	text-align: center
+}
+
+#homepage {
+	height: 80px;
+	width: 80px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	
+}
+body {
+	background-image: url("http://www.pptgrounds.com/wp-content/uploads/2016/05/Time-Management-PPT-Templates.jpg");
+	
+
+}
+	

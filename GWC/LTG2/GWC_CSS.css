@@ -1,0 +1,19 @@
+div {
+	width: 750px;
+    margin: auto;
+    padding: 10px;
+    border: 5px solid gray;
+	background-color:#DAFDFF;
+	
+}
+body{
+	font-family:Verdana;
+	align-text:center;
+	background-image:url(Images/background.jpg);
+}
+
+p{
+	color:black;
+	font-family:Verdana;
+
+}

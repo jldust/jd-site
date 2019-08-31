@@ -1,0 +1,73 @@
+@charset "utf-8";
+/* CSS Document */
+* {box-sizing:border-box;}
+ul {list-style-type: none;}
+body {font-family: 'Merriweather Sans', sans-serif;
+}
+.main {
+width:100%;
+}
+
+.month {
+    padding: 70px 25px;
+    width: 100%;
+    background: #1abc9c;
+	color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+
+.daysofweek {
+    margin: 0;
+    padding: 10px 0;
+    background-color: #ddd;
+	text-decoration:  none;
+}
+
+.days {
+    padding: 10px 0;
+    background: #eee; 
+    margin: 0;
+	font-size:12px;
+    color: #777;
+}
+
+.days a {
+	color: black;
+	text-decoration: none;
+}
+
+#today {
+    padding: 5px;
+    background: #1abc9c;
+    color: white !important
+}
+
+#homepage {
+	height: 80px;
+	width: 80px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	
+}
+
+/* Add media queries for smaller screens */
+@media screen and (max-width:720px) {
+    .weekdays, .days {width: 13.1%;}
+}
+
+@media screen and (max-width: 420px) {
+    .weekdays, .days{width: 12.5%;}
+    .days #today {padding: 2px;}
+}
+
+@media screen and (max-width: 290px) {
+    .weekdays, .days {width: 12.2%;}
+}
+body {
+	background-image: url("http://www.pptgrounds.com/wp-content/uploads/2016/05/Time-Management-PPT-Templates.jpg");
+
+}

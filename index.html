@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!-- HOMEPAGE -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Home | Jennifer Dust</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<link href="css/animate.min.css" rel="stylesheet">
+<link href="css/lightbox.css" rel="stylesheet">
+<link href="css/main.css" rel="stylesheet">
+<link href="css/responsive.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+	    <script src="js/html5shiv.js"></script>
+	    <script src="js/respond.min.js"></script>
+    <![endif]-->
+<link rel="shortcut icon" href="images/ico/favicon.ico">
+</head>
+<!--/head-->
+
+<body>
+<header id="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 overflow">
+        <div class="social-icons pull-right">
+          <ul class="nav nav-pills">
+            <li><a href="https://plus.google.com/u/1/109788747908724365590/posts" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/jennifer-dust-6488355a" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navbar" role="banner">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <a class="navbar-brand" href="/"><img src="images/logo.png" alt="logo"></a> </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/portfolio/">Portfolio</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<!--/#header-->
+
+<section id="home-slider">
+  <div class="container">
+    <div class="row">
+      <div class="main-slider">
+        <div class="slide-text">
+          <h1>A Creative Nerd</h1>
+          <p>Everything from JavaScript to PHP.</p>
+        </div>
+        <!-- Slider Images --> 
+        <img src="images/home/slider/Woman.png" class="slider-hill" alt="slider image"> <img src="images/home/slider/birds1.png" class="slider-birds1" alt="slider image"> <img src="images/home/slider/birds2.png" class="slider-birds2" alt="slider image"> </div>
+    </div>
+  </div>
+  <div class="preloader"></div>
+</section>
+<!--/#home-slider-->
+
+<section id="services" class="padding-top">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+        <div class="single-service">
+          <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms"> <a href="portfolio/index.html"><img src="images/home/Computer_Icon.png" alt=""></a> </div>
+          <h2>Illustrations</h2>
+          <p>Photoshop, Illustrator, Graphic Design</p>
+        </div>
+      </div>
+      <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
+        <div class="single-service">
+          <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="600ms"> <a href="portfolio/index.html"><img src="images/home/javascript.png" alt=""></a> </div>
+          <h2>Web Design</h2>
+          <p>HTML5, CSS, JavaScript, PHP, Wordpress, Drupal, and more!</p>
+        </div>
+      </div>
+      <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
+        <div class="single-service">
+          <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms"> <a href="portfolio/index.html"> <img src="images/home/Book_Icon.png" alt=""></a> </div>
+          <h2>Print Productions</h2>
+          <p>Pamphlets, Books, InDesign</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <br/>
+</section>
+<!--/#services-->
+
+<footer id="footer" class="padding-top">
+  <div class="container">
+    <div class="col-md-4 col-sm-6">
+      <div class="contact-info bottom">
+        <h2>Contact</h2>
+        <address>
+        E-mail: <a href="mailto:dust.jennifer@gmail.com">dust.jennifer@gmail.com</a> <br>
+        <div class="social-icons-footer pull-left">
+          <ul class="nav nav-pills">
+            <li><a href="https://plus.google.com/u/1/109788747908724365590/posts" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/jennifer-dust-6488355a" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+        </address>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <div class="contact-form bottom">
+        <h2>Send a message</h2>
+        <form id="main-contact-form" name="contact-form" method="post" action="sendemail.php">
+          <div class="form-group">
+            <input type="text" name="name" class="form-control" required="required" placeholder="Name">
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" class="form-control" required="required" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <textarea name="message" id="message" required class="form-control" rows="8" placeholder="Your text here"></textarea>
+          </div>
+          <div class="form-group">
+            <input type="submit" name="submit" class="btn btn-submit" value="Submit">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="copyright-text text-center">
+        <p>&copy; Jennifer Dust 2016. All Rights Reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+<!--/#footer--> 
+
+
+<script type="text/javascript" src="js/jquery.js"></script> 
+<script type="text/javascript" src="js/bootstrap.min.js"></script> 
+<script type="text/javascript" src="js/lightbox.min.js"></script> 
+<script type="text/javascript" src="js/wow.min.js"></script> 
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

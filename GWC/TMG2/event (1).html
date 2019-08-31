@@ -1,0 +1,210 @@
+<!doctype html>
+<!-- This is a template for NCC's GWC Club-->
+
+<html lang="en">
+<!-- HEADER SECTION -->
+<head>
+  <meta charset="utf-8">
+
+  <title>My Homepage</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <!-- Links to CSS and JS Files -->
+  <script src="GWC_JS.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="GWC_CSS.css">
+</head>
+
+<!-- BODY SECTION -->
+<body>
+<div class="container">
+
+	<!--Main content goes inside row -->
+	<div class="row"> 
+		<div class="col-xs-7">
+			<h1>My Header</h1>
+			<p>Girls Who Code are Awesome!!!!!! I think everyone should learn to code, especially in HTML and CSS.</p>
+
+			<!-- This is the user event input -->
+			<form>
+			  Event Title:<br>
+			  <input type="text" name="eventTitle">
+			  <br><br>
+			  Event Start Date:<br>
+			  <input type="date" id="eventStartDate" name="eventStartDate">
+			  <input type="text" id="eventStartTime" name="eventStartTime">
+			  <br><br>
+			  Event End Date:<br>
+			  <input type="date" name="eventEndDate">
+			  <input type="text" id="eventEndTime" name="eventEndTime">
+			  <br><br>
+				Priority:<br>
+			  <select name="eventPriority">
+			  <option value="High">High</option>
+			  <option value="Medium">Medium</option>
+			  <option value="Low">Low</option>
+			  </select>
+			  <br><br>
+				Description:<br>
+			  <input type="textarea" name="eventDescription">
+			  <br><br>
+			  <input type="submit" value="Submit">
+			</form>
+		</div>
+		<!--upcoming events -->
+		<div class="col-xs-5">
+
+			<div id="eventDiv">
+				<h2>Upcoming Events</h2>
+			</div>
+		</div>
+	</div><!--End row -->
+	</div><!--end container -->
+</body>
+
+<!-- FOOTER SECTION -->
+<footer>
+
+</footer>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!--This contains the Event Form JavaScript -->
+<script>
+
+var eventForm;
+var eventOrder=[]; //holds the event in order
+var eventList = document.getElementById("eventDiv");
+	
+	
+/********************************************************
+* Gets all of the values from the form when it is 
+* submitted
+********************************************************/	
+$( "form" ).submit(function( event ) {
+  eventForm=$( this ).serialize();
+  console.log( $( this ).serialize() );
+  event.preventDefault();
+  processForm(); //calls processForm
+});
+
+sortEvents();
+writeEvents();
+	
+/********************************************************
+* processForm
+* after the form is submitted, the event is added to the
+* localStorage
+********************************************************/
+function processForm()
+{
+	//Gets the date of the event to use as the key identifier
+	var dateKey = document.getElementById("eventStartDate").value + " " +document.getElementById("eventStartTime").value;
+	//Store each event created in local storage, keeps it persistent
+	localStorage.setItem(dateKey,eventForm);
+	sortEvents();
+	writeEvents();
+}
+	
+/********************************************************
+* readEvent
+* Gets the event data for a single event from the 
+* local storage string and puts it into an array
+********************************************************/
+function readEvent(dateKey)
+{
+  	var data = localStorage.getItem(dateKey).split("&"); //gets saved event info from local storage
+    console.log(data);
+	
+    var obj={}; 
+	
+    for(var key in data)
+    {
+        console.log(data[key]);
+        obj[data[key].split("=")[0]] = data[key].split("=")[1]; //creates a new associative array where the event attribute is set equal to its value
+		//example eventTitle = My Party
+    }
+
+    console.log(obj);
+	formatEvent(dateKey, obj);
+}
+	
+/********************************************************
+* formatEvent
+* Assembles HTML string for the event and its attributes
+********************************************************/	
+function formatEvent(date, event)
+{
+	if(event["eventTitle"] != undefined)
+	{	
+		var eventStr=""; //event string that will hold the generated HTML
+		
+		var newEvent = document.createElement("div");//makes a new div that the element will go into
+		//Add remove event
+		eventStr += "<button id='" + date + "'class='btn btn-danger btn-xs' style='float:right' onClick='removeEvent(this)'>X</button>";
+		//Add event title
+		eventStr += "<h3>" + unescape(event["eventTitle"].split('+').join(' ')) + "</h3>";
+		//Add event times
+		eventStr += "<p>" + event["eventStartDate"] + " " + unescape(event["eventStartTime"])+ " to " + event["eventEndDate"] + " " + unescape(event["eventEndTime"])+"</p>";
+		//Add priority level
+		eventStr += "<p>Priority: " + event["eventPriority"] +"</p>";
+		//Add event description
+		eventStr += "<p>Description: " + unescape(event["eventDescription"].split('+').join(' '))  +"</p>";
+		//add our event string to the newEvent div
+		newEvent.innerHTML = eventStr;
+		//add the event to the eventList column
+		eventList.appendChild(newEvent);
+	}
+}
+	
+/********************************************************
+* sort Events
+* Sorts the events in order by date in an array
+********************************************************/
+function sortEvents()
+{
+	//gets the date keys for all of the events
+	for (var i=0; i<=localStorage.length-1; i++)  
+    {  
+        eventOrder[i] = localStorage.key(i);  
+    }  
+	//sorts the event dates in order
+	eventOrder.sort(function(a,b){
+	  // Turn your strings into dates, and then subtract them
+	  // to get a value that is either negative, positive, or zero.
+	  return new Date(b.date) - new Date(a.date);
+	});
+}
+
+/********************************************************
+* writeEvent
+* Writes the events after they have been sorted
+********************************************************/
+function writeEvents()
+{
+	eventList.innerHTML = "<h2>Upcoming Events</h2>";
+	//gets the date keys for all of the events
+	for (var i=0; i<=eventOrder.length-1; i++)  
+    {  	
+		readEvent(eventOrder[i]);
+    }  
+}
+	
+/********************************************************
+* removeEvent
+* Removes the events after user hits red button
+********************************************************/
+function removeEvent(element)
+{
+	var eventKey = element.id;
+	console.log("removing " + eventKey);
+	localStorage.removeItem(eventKey);
+	sortEvents();
+	writeEvents();
+}
+	
+</script>
+
+</html>
